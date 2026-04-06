@@ -14,13 +14,12 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const { login } = useAuth(); // We need auth context if they use Google Login from here
+  const { login } = useAuth();
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-
     try {
       const response = await apiClient.post("/auth/register", { name, email, password });
       if (response.status === 201 || response.status === 200) {
@@ -52,8 +51,8 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background-dark p-4 font-display text-slate-900 antialiased">
-      <div className="w-full max-w-md glass-card p-10 rounded-3xl relative overflow-hidden bg-white border border-black/5 shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-[#FBF9F1] dark:bg-[#0A0A0A] p-4 font-display antialiased transition-colors duration-300">
+      <div className="w-full max-w-md bg-white dark:bg-[#141414] border border-black/5 dark:border-white/10 shadow-2xl dark:shadow-black/50 p-10 rounded-3xl relative overflow-hidden">
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -61,45 +60,47 @@ export default function RegisterPage() {
           <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center shadow-[0_4px_20px_rgba(255,179,0,0.4)] mb-5">
             <span className="material-symbols-outlined text-slate-900 text-3xl font-bold">person_add</span>
           </div>
-          <h2 className="text-3xl font-black tracking-tight text-slate-900">Create Account</h2>
-          <p className="text-slate-500 font-medium text-sm mt-2">Join the <span className="text-slate-900 font-bold">EduStream</span> experience</p>
+          <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Create Account</h2>
+          <p className="text-slate-500 dark:text-slate-400 font-medium text-sm mt-2">
+            Join the <span className="text-slate-900 dark:text-white font-bold">EduStream</span> experience
+          </p>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-600 p-4 rounded-2xl text-sm mb-6 text-center font-bold">
+          <div className="bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 text-red-600 p-4 rounded-2xl text-sm mb-6 text-center font-bold">
             {error}
           </div>
         )}
 
         <form onSubmit={handleRegister} className="space-y-5">
           <div>
-            <label className="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2 ml-1">Full Name</label>
+            <label className="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 ml-1">Full Name</label>
             <input
               type="text"
               required
-              className="w-full bg-slate-50 border border-black/5 rounded-2xl px-5 py-4 text-sm text-slate-900 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none"
+              className="w-full bg-slate-50 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-2xl px-5 py-4 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-primary/20 focus:bg-white dark:focus:bg-white/10 transition-all outline-none"
               placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div>
-            <label className="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2 ml-1">Email</label>
+            <label className="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 ml-1">Email</label>
             <input
               type="email"
               required
-              className="w-full bg-slate-50 border border-black/5 rounded-2xl px-5 py-4 text-sm text-slate-900 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none"
+              className="w-full bg-slate-50 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-2xl px-5 py-4 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-primary/20 focus:bg-white dark:focus:bg-white/10 transition-all outline-none"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
-            <label className="block text-xs font-black text-slate-500 uppercase tracking-widest mb-2 ml-1">Password</label>
+            <label className="block text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 ml-1">Password</label>
             <input
               type="password"
               required
-              className="w-full bg-slate-50 border border-black/5 rounded-2xl px-5 py-4 text-sm text-slate-900 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none"
+              className="w-full bg-slate-50 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-2xl px-5 py-4 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-primary/20 focus:bg-white dark:focus:bg-white/10 transition-all outline-none"
               placeholder="Create a password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -115,9 +116,9 @@ export default function RegisterPage() {
         </form>
 
         <div className="mt-6 flex items-center justify-center">
-          <div className="h-px bg-black/10 flex-1"></div>
-          <span className="px-4 text-xs font-medium text-slate-400 uppercase tracking-wider">or sign in with</span>
-          <div className="h-px bg-black/10 flex-1"></div>
+          <div className="h-px bg-black/10 dark:bg-white/10 flex-1"></div>
+          <span className="px-4 text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider">or sign in with</span>
+          <div className="h-px bg-black/10 dark:bg-white/10 flex-1"></div>
         </div>
 
         <div className="mt-6 flex justify-center">
@@ -130,7 +131,7 @@ export default function RegisterPage() {
           />
         </div>
 
-        <p className="mt-8 text-center text-sm text-slate-500 font-medium">
+        <p className="mt-8 text-center text-sm text-slate-500 dark:text-slate-400 font-medium">
           Already have an account?{" "}
           <Link href="/login" className="text-primary hover:underline font-black uppercase tracking-tighter">
             Sign in here

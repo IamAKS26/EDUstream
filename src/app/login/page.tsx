@@ -19,7 +19,6 @@ export default function LoginPage() {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-
     try {
       const response = await apiClient.post("/auth/login", { email, password });
       if (response.data.token && response.data.user) {
@@ -58,8 +57,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background-dark p-4 font-display text-slate-100">
-      <div className="w-full max-w-md glass-card p-8 rounded-2xl relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-[#FBF9F1] dark:bg-[#0A0A0A] p-4 font-display transition-colors duration-300">
+      <div className="w-full max-w-md bg-white dark:bg-[#141414] border border-black/5 dark:border-white/10 shadow-2xl dark:shadow-black/50 p-8 rounded-2xl relative overflow-hidden">
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-accent/20 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -67,8 +66,8 @@ export default function LoginPage() {
           <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center shadow-[0_0_15px_rgba(255,179,0,0.4)] mb-4">
             <span className="material-symbols-outlined text-slate-900 text-2xl">school</span>
           </div>
-          <h2 className="text-2xl font-bold">Welcome Back</h2>
-          <p className="text-slate-500 text-sm mt-1">Sign in to your EduStream account</p>
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Welcome Back</h2>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Sign in to your EduStream account</p>
         </div>
 
         {error && (
@@ -79,22 +78,22 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-slate-500 mb-1">Email</label>
+            <label className="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Email</label>
             <input
               type="email"
               required
-              className="w-full bg-slate-100/5 border border-black/5 rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all outline-none"
+              className="w-full bg-slate-50 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all outline-none"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-500 mb-1">Password</label>
+            <label className="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Password</label>
             <input
               type="password"
               required
-              className="w-full bg-slate-100/5 border border-black/5 rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all outline-none"
+              className="w-full bg-slate-50 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all outline-none"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -111,9 +110,9 @@ export default function LoginPage() {
         </form>
 
         <div className="mt-6 flex items-center justify-center">
-          <div className="h-px bg-black/10 flex-1"></div>
-          <span className="px-4 text-xs font-medium text-slate-400 uppercase tracking-wider">or sign in with</span>
-          <div className="h-px bg-black/10 flex-1"></div>
+          <div className="h-px bg-black/10 dark:bg-white/10 flex-1"></div>
+          <span className="px-4 text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider">or sign in with</span>
+          <div className="h-px bg-black/10 dark:bg-white/10 flex-1"></div>
         </div>
 
         <div className="mt-6 flex justify-center">
@@ -126,7 +125,7 @@ export default function LoginPage() {
           />
         </div>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
           Don't have an account?{" "}
           <Link href="/register" className="text-primary hover:underline font-medium">
             Register here

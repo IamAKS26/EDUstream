@@ -44,8 +44,8 @@ export function LessonViewer({ unit, moduleId, onComplete }: Props) {
         </div>
       </div>
 
-      {/* Content Area - Chatbot Style via raw element mapping */}
-      <div className="flex-1 bg-white/[0.02] border border-black/5 rounded-2xl p-6 lg:p-10 overflow-hidden shadow-inner">
+      {/* Content Area */}
+      <div className="flex-1 bg-slate-50 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 rounded-2xl p-6 lg:p-10 overflow-hidden">
         {rawContent ? (
           <article className="max-w-none text-slate-700">
             <ReactMarkdown 
@@ -53,8 +53,8 @@ export function LessonViewer({ unit, moduleId, onComplete }: Props) {
               components={{
                 h1: ({node, ...props}) => <h1 className="text-3xl font-display font-bold text-slate-900 mb-6 mt-8" {...props} />,
                 h2: ({node, ...props}) => <h2 className="text-2xl font-display font-bold text-slate-900 mb-4 mt-8 pb-2 border-b border-black/5" {...props} />,
-                h3: ({node, ...props}) => <h3 className="text-xl font-bold text-primary/90 mb-3 mt-6" {...props} />,
-                h4: ({node, ...props}) => <h4 className="text-lg font-bold text-slate-200 mb-2 mt-4" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-xl font-bold text-primary dark:text-primary/90 mb-3 mt-6" {...props} />,
+                h4: ({node, ...props}) => <h4 className="text-lg font-bold text-slate-700 dark:text-slate-200 mb-2 mt-4" {...props} />,
                 p: ({node, ...props}) => <p className="mb-5 leading-relaxed text-slate-700" {...props} />,
                 ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-5 space-y-2 text-slate-700 marker:text-primary" {...props} />,
                 ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-5 space-y-2 text-slate-700 marker:text-primary font-mono marker:font-bold" {...props} />,
@@ -71,7 +71,7 @@ export function LessonViewer({ unit, moduleId, onComplete }: Props) {
                   </div>
                 ),
                 thead: ({node, ...props}) => <thead className="bg-slate-50 border-b border-black/5" {...props} />,
-                th: ({node, ...props}) => <th className="px-4 py-3 font-semibold text-white/90" {...props} />,
+                th: ({node, ...props}) => <th className="px-4 py-3 font-semibold text-slate-700 dark:text-white/90" {...props} />,
                 td: ({node, ...props}) => <td className="px-4 py-3 border-t border-black/5" {...props} />,
                 img: ({node, ...props}) => <img className="rounded-xl shadow-lg border border-black/5 max-w-full h-auto my-6" {...props} />,
                 code(props) {
@@ -79,9 +79,9 @@ export function LessonViewer({ unit, moduleId, onComplete }: Props) {
                   const match = /language-(\w+)/.exec(className || '')
                   return match ? (
                     <div className="my-6 relative group">
-                      <div className="absolute top-0 right-0 bg-slate-100 text-[10px] text-white/50 px-2 py-1 rounded-bl-lg rounded-tr-xl tracking-widest uppercase font-mono z-10">{match[1]}</div>
-                      <pre className="bg-white border border-black p-4 rounded-xl overflow-x-auto shadow-2xl relative">
-                        <code className={`font-mono text-sm text-[#d4d4d4] ${className}`} {...rest}>
+                      <div className="absolute top-0 right-0 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-white/50 text-[10px] px-2 py-1 rounded-bl-lg rounded-tr-xl tracking-widest uppercase font-mono z-10">{match[1]}</div>
+                      <pre className="bg-slate-800 dark:bg-[#1a1a2e] border border-slate-700 dark:border-black p-4 rounded-xl overflow-x-auto shadow-lg relative">
+                        <code className={`font-mono text-sm text-slate-100 dark:text-[#d4d4d4] ${className}`} {...rest}>
                           {children}
                         </code>
                       </pre>

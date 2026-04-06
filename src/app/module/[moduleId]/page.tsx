@@ -147,14 +147,14 @@ export default function ModulePage() {
   return (
     <DashboardLayout>
       <div className="p-8 max-w-4xl mx-auto space-y-6">
-        <Link href="/module" className="inline-flex items-center text-sm text-slate-400 hover:text-white transition-colors">
+        <Link href="/module" className="inline-flex items-center text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
           <span className="material-symbols-outlined text-[18px] mr-1">arrow_back</span>
           Back to Catalog
         </Link>
 
         {/* Loading */}
         {loading && (
-          <div className="flex items-center gap-3 text-slate-400 py-20 justify-center">
+          <div className="flex items-center gap-3 text-slate-500 dark:text-slate-400 py-20 justify-center">
             <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
             <span>Loading course...</span>
           </div>
@@ -193,14 +193,14 @@ export default function ModulePage() {
               </div>
 
               <div className="p-8">
-                <h1 className="text-3xl font-bold mb-2">{course.title}</h1>
+                <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{course.title}</h1>
                 {course.category && <p className="text-xs text-primary uppercase tracking-wider font-bold mb-3">{course.category}</p>}
-                <p className="text-slate-400 leading-relaxed max-w-2xl mb-6">
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mb-6">
                   {course.description || "This course is generated dynamically by the AI Engine to adapt to your learning pace and prior knowledge."}
                 </p>
 
                 {/* Meta row */}
-                <div className="flex flex-wrap gap-4 text-sm text-slate-400 mb-8">
+                <div className="flex flex-wrap gap-4 text-sm text-slate-500 dark:text-slate-400 mb-8">
                   {course.duration && (
                     <span className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-base">schedule</span> {course.duration}
@@ -239,7 +239,7 @@ export default function ModulePage() {
                     <button
                       onClick={handleUnpublish}
                       disabled={publishing}
-                      className="inline-flex items-center gap-2 px-5 py-3 bg-white/5 border border-white/10 text-slate-400 font-semibold rounded-xl hover:bg-white/10 transition-all text-sm disabled:opacity-50"
+                      className="inline-flex items-center gap-2 px-5 py-3 bg-slate-100 dark:bg-white/5 border border-black/10 dark:border-white/10 text-slate-500 dark:text-slate-400 font-semibold rounded-xl hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-sm disabled:opacity-50"
                     >
                       <span className="material-symbols-outlined text-sm">unpublished</span>
                       {publishing ? "Unpublishing..." : "Unpublish"}
@@ -258,10 +258,10 @@ export default function ModulePage() {
             {/* Module → Unit Hierarchy */}
             {modules.length > 0 && (
               <div className="space-y-3">
-                <h2 className="text-xl font-bold flex items-center gap-2">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                   <span className="material-symbols-outlined text-primary">account_tree</span>
                   Course Content
-                  <span className="text-sm font-normal text-slate-500 ml-1">
+                  <span className="text-sm font-normal text-slate-500 dark:text-slate-500 ml-1">
                     ({modules.length} modules · {totalUnits} units)
                   </span>
                 </h2>
@@ -271,23 +271,23 @@ export default function ModulePage() {
                     {/* Module Header */}
                     <button
                       onClick={() => toggleModule(mod._id)}
-                      className="w-full flex items-center gap-4 p-5 hover:bg-white/3 transition-colors text-left group"
+                      className="w-full flex items-center gap-4 p-5 hover:bg-black/3 dark:hover:bg-white/3 transition-colors text-left group"
                     >
                       <div className="w-9 h-9 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
                         <span className="text-primary text-sm font-bold">{modIndex + 1}</span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-white">{mod.title}</p>
-                        <p className="text-xs text-slate-500 mt-0.5">{mod.units.length} unit{mod.units.length !== 1 ? "s" : ""}</p>
+                        <p className="font-semibold text-slate-900 dark:text-white">{mod.title}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-500 mt-0.5">{mod.units.length} unit{mod.units.length !== 1 ? "s" : ""}</p>
                       </div>
-                      <span className={`material-symbols-outlined text-slate-400 transition-transform duration-200 ${expandedModules.has(mod._id) ? "rotate-180" : ""}`}>
+                      <span className={`material-symbols-outlined text-slate-400 dark:text-slate-400 transition-transform duration-200 ${expandedModules.has(mod._id) ? "rotate-180" : ""}`}>
                         expand_more
                       </span>
                     </button>
 
                     {/* Unit List */}
                     {expandedModules.has(mod._id) && (
-                      <div className="border-t border-white/5 divide-y divide-white/5">
+                      <div className="border-t border-black/5 dark:border-white/5 divide-y divide-black/5 dark:divide-white/5">
                         {mod.units.length === 0 ? (
                           <p className="px-5 py-4 text-sm text-slate-500 italic">No units in this module yet.</p>
                         ) : (
@@ -295,23 +295,23 @@ export default function ModulePage() {
                             <Link
                               href={`/unit/${unit._id}`}
                               key={unit._id}
-                              className="flex items-center gap-4 px-5 py-3.5 hover:bg-white/3 transition-colors group cursor-pointer"
+                              className="flex items-center gap-4 px-5 py-3.5 hover:bg-black/3 dark:hover:bg-white/3 transition-colors group cursor-pointer"
                             >
-                              <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center flex-shrink-0">
-                                <span className="material-symbols-outlined text-slate-400 text-base">
+                              <div className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-white/5 border border-black/8 dark:border-white/8 flex items-center justify-center flex-shrink-0">
+                                <span className="material-symbols-outlined text-slate-500 dark:text-slate-400 text-base">
                                   {typeIcon[unit.type] ?? "article"}
                                 </span>
                               </div>
                               <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-slate-200 truncate group-hover:text-primary transition-colors">
+                                <p className="text-sm font-medium text-slate-700 dark:text-slate-200 truncate group-hover:text-primary transition-colors">
                                   {unit.title || `Unit ${unitIndex + 1}`}
                                 </p>
-                                <p className="text-xs text-slate-500">{typeLabel[unit.type] ?? unit.type}</p>
+                                <p className="text-xs text-slate-500 dark:text-slate-500">{typeLabel[unit.type] ?? unit.type}</p>
                               </div>
                               {unit.duration && unit.duration !== "00:00" && (
                                 <span className="text-xs text-slate-500 flex-shrink-0">{unit.duration}</span>
                               )}
-                              <span className="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors text-sm opacity-0 group-hover:opacity-100">
+                              <span className="material-symbols-outlined text-slate-400 dark:text-slate-600 group-hover:text-primary transition-colors text-sm opacity-0 group-hover:opacity-100">
                                 arrow_forward_ios
                               </span>
                             </Link>

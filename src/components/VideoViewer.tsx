@@ -44,11 +44,11 @@ export function VideoViewer({ unit, moduleId, onComplete }: Props) {
   return (
     <div className="glass-card rounded-2xl p-8 max-w-4xl mx-auto flex flex-col items-center">
       {/* Header */}
-      <div className="w-full mb-6 flex justify-between items-center pb-4 border-b border-black/5">
+      <div className="w-full mb-6 flex justify-between items-center pb-4 border-b border-black/5 dark:border-white/5">
         <div>
-          <h2 className="text-3xl font-bold font-display">{displayTitle}</h2>
+          <h2 className="text-3xl font-bold font-display text-slate-900 dark:text-white">{displayTitle}</h2>
           {content.channelTitle && (
-            <p className="text-sm text-slate-500 mt-1 flex items-center gap-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
               <span className="material-symbols-outlined text-sm text-primary">smart_display</span>
               {content.channelTitle}
             </p>

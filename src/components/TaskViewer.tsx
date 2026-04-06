@@ -23,10 +23,10 @@ export function TaskViewer({ unit, moduleId, onComplete }: Props) {
 
   return (
     <div className="glass-card rounded-2xl p-8 max-w-3xl mx-auto">
-      <div className="mb-6 flex justify-between items-center border-b border-black/5 pb-4">
+      <div className="mb-6 flex justify-between items-center border-b border-black/5 dark:border-white/5 pb-4">
         <div>
-          <h2 className="text-3xl font-bold font-display">{content.title || "Interactive Task"}</h2>
-          <p className="text-slate-500 mt-1">Complete the assignment below.</p>
+          <h2 className="text-3xl font-bold font-display text-slate-900 dark:text-white">{content.title || "Interactive Task"}</h2>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Complete the assignment below.</p>
         </div>
         <span className="material-symbols-outlined text-primary text-3xl">code_blocks</span>
       </div>
@@ -46,13 +46,13 @@ export function TaskViewer({ unit, moduleId, onComplete }: Props) {
         />
       ) : (
         <div className="space-y-4">
-          <label className="block text-sm font-bold text-slate-200 uppercase tracking-wider">Your Solution</label>
+          <label className="block text-sm font-bold text-slate-600 dark:text-slate-200 uppercase tracking-wider">Your Solution</label>
           <textarea
             rows={6}
             value={submission}
             onChange={(e) => setSubmission(e.target.value)}
             placeholder="Type or paste your answer here..."
-            className="w-full bg-slate-900 border border-black/5 rounded-xl p-4 text-slate-700 font-mono text-sm focus:ring-1 focus:ring-primary/50 focus:border-primary/50 outline-none transition-all resize-y shadow-inner"
+            className="w-full bg-slate-50 dark:bg-slate-900 border border-black/5 dark:border-white/10 rounded-xl p-4 text-slate-700 dark:text-slate-300 font-mono text-sm focus:ring-1 focus:ring-primary/50 focus:border-primary/50 outline-none transition-all resize-y placeholder:text-slate-400"
           />
           <div className="mt-4 flex justify-end pt-4 border-t border-black/5">
             <button
