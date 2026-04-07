@@ -101,26 +101,26 @@ export default function DashboardPage() {
         {/* Welcome Section */}
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
           <div className="flex-1">
-            <h2 className="text-[2.5rem] font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-3">
-              Welcome back, {user?.name?.split(" ")[0] || "User"}! <span className="text-4xl">👋</span>
+            <h2 className="text-3xl md:text-[2.5rem] font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-3">
+              Welcome back, {user?.name?.split(" ")[0] || "User"}! <span className="text-3xl md:text-4xl">👋</span>
             </h2>
-            <p className="text-slate-500 dark:text-slate-400 mt-2 text-base">
+            <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm md:text-base">
               Keep learning and earn 50 XP today! You're on a <span className="font-semibold text-slate-700 dark:text-slate-300">{stats.streak}-day streak!</span>
             </p>
           </div>
 
-          <div className="flex items-center gap-8 bg-white dark:bg-[#141414] p-6 rounded-3xl border border-black/5 dark:border-white/10 shadow-sm">
-            <div className="text-center px-4 border-r border-slate-100 dark:border-white/10 last:border-0">
-              <h3 className="text-4xl font-semibold text-slate-900 dark:text-white">{stats.xp}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1 font-medium">Total XP</p>
+          <div className="flex flex-row flex-wrap md:flex-nowrap items-center justify-around md:justify-center gap-4 sm:gap-8 bg-white dark:bg-[#141414] p-4 sm:p-6 rounded-3xl border border-black/5 dark:border-white/10 shadow-sm w-full md:w-auto mt-4 md:mt-0">
+            <div className="text-center px-2 sm:px-4 border-r border-slate-100 dark:border-white/10 last:border-0 flex-1 md:flex-none">
+              <h3 className="text-2xl sm:text-4xl font-semibold text-slate-900 dark:text-white">{stats.xp}</h3>
+              <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1 font-medium">Total XP</p>
             </div>
-            <div className="text-center px-4 border-r border-slate-100 dark:border-white/10 last:border-0">
-              <h3 className="text-4xl font-semibold text-slate-900 dark:text-white">{stats.badges}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1 font-medium">Badges Earned</p>
+            <div className="text-center px-2 sm:px-4 border-r border-slate-100 dark:border-white/10 last:border-0 flex-1 md:flex-none">
+              <h3 className="text-2xl sm:text-4xl font-semibold text-slate-900 dark:text-white">{stats.badges}</h3>
+              <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1 font-medium">Badges</p>
             </div>
-            <div className="text-center px-4 border-r border-slate-100 dark:border-white/10 last:border-0">
-              <h3 className="text-4xl font-semibold text-slate-900 dark:text-white">{stats.certificates}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1 font-medium">Certificates</p>
+            <div className="text-center px-2 sm:px-4 border-r border-slate-100 dark:border-white/10 last:border-0 flex-1 md:flex-none">
+              <h3 className="text-2xl sm:text-4xl font-semibold text-slate-900 dark:text-white">{stats.certificates}</h3>
+              <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1 font-medium">Certs</p>
             </div>
           </div>
         </div>
@@ -131,36 +131,36 @@ export default function DashboardPage() {
           <div className="lg:col-span-8 space-y-6">
             {/* Learning Hours Chart */}
             <div className="bg-white dark:bg-[#141414] p-6 rounded-3xl border border-black/5 dark:border-white/10 shadow-sm h-80 flex flex-col">
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">Learning Hours</h3>
                   <div className="flex items-center gap-3 text-xs font-medium text-slate-500 dark:text-slate-400">
-                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-primary"></div> UI/UX Design <span className="text-slate-900 dark:text-white ml-1">82%</span></span>
-                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-slate-200 dark:bg-slate-600"></div> Development <span className="text-slate-900 dark:text-white ml-1">12%</span></span>
+                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-primary"></div> UI/UX <span className="text-slate-900 dark:text-white ml-1">82%</span></span>
+                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-slate-200 dark:bg-slate-600"></div> Dev <span className="text-slate-900 dark:text-white ml-1">12%</span></span>
                   </div>
                 </div>
-                <select className="text-sm bg-transparent border-none text-slate-500 dark:text-slate-400 font-medium outline-none cursor-pointer">
+                <select className="text-sm bg-transparent border-none text-slate-500 dark:text-slate-400 font-medium outline-none cursor-pointer self-end sm:self-auto">
                   <option>Monthly</option>
                   <option>Weekly</option>
                 </select>
               </div>
-              <div className="flex-1 flex items-end justify-between gap-2 pt-4 relative">
-                <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-[10px] text-slate-400 dark:text-slate-500 pb-6">
+              <div className="flex-1 flex items-end justify-between gap-1 sm:gap-2 pt-4 relative overflow-x-auto no-scrollbar">
+                <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-[10px] text-slate-400 dark:text-slate-500 pb-6 hidden sm:flex">
                   <span>180</span><span>120</span><span>80</span><span>40</span><span>20</span><span>0</span>
                 </div>
-                <div className="flex-1 flex items-end justify-around pl-8 h-full pb-6 relative z-10">
+                <div className="flex-1 flex items-end justify-around pl-0 sm:pl-8 h-full pb-6 relative z-10 min-w-[300px]">
                   {[40, 60, 50, 80, 70, 90, 100, 60, 50, 40, 20, 10].map((h, i) => (
-                    <div key={i} className="flex flex-col gap-1 items-center justify-end h-full w-full px-1 group">
-                      <div className="w-full bg-slate-100 dark:bg-slate-700 rounded-t-md relative flex items-end overflow-hidden h-full group-hover:bg-slate-200 dark:group-hover:bg-slate-600 transition-colors">
+                    <div key={i} className="flex flex-col gap-1 items-center justify-end h-full w-full px-0.5 sm:px-1 group">
+                      <div className="w-full max-w-[1.5rem] bg-slate-100 dark:bg-slate-700 rounded-t-md relative flex items-end overflow-hidden h-full group-hover:bg-slate-200 dark:group-hover:bg-slate-600 transition-colors">
                         <div style={{ height: `${h}%` }} className="w-full bg-primary rounded-t-md opacity-80 group-hover:opacity-100 transition-opacity"></div>
                       </div>
-                      <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium mt-2">
+                      <span className="text-[8px] sm:text-[10px] text-slate-400 dark:text-slate-500 font-medium mt-1 sm:mt-2">
                         {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][i]}
                       </span>
                     </div>
                   ))}
                 </div>
-                <div className="absolute inset-0 pl-8 pb-6 flex flex-col justify-between pointer-events-none">
+                <div className="absolute inset-0 pl-0 sm:pl-8 pb-6 flex flex-col justify-between pointer-events-none hidden sm:flex">
                   {[1,2,3,4,5,6].map(i => (
                     <div key={i} className="border-b border-dashed border-slate-100 dark:border-white/5 w-full h-0"></div>
                   ))}

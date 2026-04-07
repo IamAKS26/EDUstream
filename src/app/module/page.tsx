@@ -86,13 +86,13 @@ export default function ModuleCatalogPage() {
         </div>
 
         {/* Tabs & Generate */}
-        <div className="flex items-center justify-between border-b border-black/5 dark:border-white/10 pb-4 px-2">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between border-b border-black/5 dark:border-white/10 pb-4 px-2 gap-4">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
             {['My Courses', 'Enrolled', 'Available'].map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors whitespace-nowrap flex-shrink-0 ${
                   activeTab === tab
                     ? 'bg-[#FEF3C7] dark:bg-primary/20 text-slate-900 dark:text-primary'
                     : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5'
@@ -104,7 +104,7 @@ export default function ModuleCatalogPage() {
           </div>
           <button
             onClick={() => setShowForm(v => !v)}
-            className="flex items-center gap-2 px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-full hover:bg-slate-800 dark:hover:bg-white/90 transition-colors shadow-sm text-sm"
+            className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-full hover:bg-slate-800 dark:hover:bg-white/90 transition-colors shadow-sm text-sm whitespace-nowrap"
           >
             <span className="material-symbols-outlined text-sm">auto_awesome</span>
             Generate

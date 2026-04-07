@@ -30,7 +30,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen w-full bg-[#FBF9F1] dark:bg-[#0A0A0A] text-slate-900 dark:text-white flex flex-col font-display transition-colors duration-300">
       <TopNav />
-      <main className="flex-1 w-full p-6 md:p-8 lg:p-10 flex flex-col">
+      <main className="flex-1 w-full p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col">
         {children}
       </main>
     </div>
