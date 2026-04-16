@@ -406,12 +406,12 @@ export default function ModuleCatalogPage() {
                 value={topic}
                 onChange={e => setTopic(e.target.value)}
                 placeholder='e.g. "Python for Data Science"'
-                className="flex-1 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-1 focus:ring-primary outline-none"
+                className="flex-1 bg-white dark:bg-[#1E1E1E] border border-slate-200 dark:border-white/20 rounded-xl px-4 py-3 text-base text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all shadow-inner"
               />
               <select
                 value={level}
                 onChange={e => setLevel(e.target.value as typeof level)}
-                className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white outline-none focus:ring-1 focus:ring-primary"
+                className="bg-white dark:bg-[#1E1E1E] border border-slate-200 dark:border-white/20 rounded-xl px-4 py-3 text-base text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all shadow-sm cursor-pointer"
               >
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
