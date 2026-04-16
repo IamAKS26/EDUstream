@@ -33,12 +33,15 @@ export default function UnitPage() {
     fetchUnit();
   }, [unitId]);
 
+  const unitModuleId = unit?.moduleId?._id || unit?.moduleId;
+  const unitCourseId = unit?.moduleId?.courseId || unitModuleId;
+
   const handleComplete = async (payload: { timeSpent: number; quizScore?: number }) => {
     if (!unit) return;
     try {
       const resp = await apiClient.post("/units/track-interaction", {
         unitId: unit._id || unitId,
-        moduleId: unit.moduleId,
+        moduleId: unitModuleId,
         type: unit.type,
         timeSpent: payload.timeSpent,
         quizScore: payload.quizScore || 0,
@@ -48,15 +51,15 @@ export default function UnitPage() {
       const nextUnitId = resp.data?.nextUnitId;
       if (nextUnitId) {
         router.push(`/unit/${nextUnitId}`);
-      } else if (unit.moduleId) {
-        router.push(`/module/${unit.moduleId}`);
+      } else if (unitCourseId) {
+        router.push(`/module/${unitCourseId}`);
       } else {
         router.push('/dashboard');
       }
     } catch (err) {
       console.error("Failed to track interaction", err);
-      if (unit.moduleId) {
-        router.push(`/module/${unit.moduleId}`);
+      if (unitCourseId) {
+        router.push(`/module/${unitCourseId}`);
       }
     }
   };
@@ -66,13 +69,13 @@ export default function UnitPage() {
 
     switch (unit.type) {
       case "read":
-        return <LessonViewer unit={unit} moduleId={unit.moduleId} onComplete={handleComplete} />;
+        return <LessonViewer unit={unit} moduleId={unitModuleId} onComplete={handleComplete} />;
       case "quiz":
-        return <QuizViewer unit={unit} moduleId={unit.moduleId} onComplete={handleComplete} />;
+        return <QuizViewer unit={unit} moduleId={unitModuleId} onComplete={handleComplete} />;
       case "video":
-        return <VideoViewer unit={unit} moduleId={unit.moduleId} onComplete={handleComplete} />;
+        return <VideoViewer unit={unit} moduleId={unitModuleId} onComplete={handleComplete} />;
       case "task":
-        return <TaskViewer unit={unit} moduleId={unit.moduleId} onComplete={handleComplete} />;
+        return <TaskViewer unit={unit} moduleId={unitModuleId} onComplete={handleComplete} />;
       default:
         return <div className="text-red-500">Unknown unit type: {unit.type}</div>;
     }
@@ -87,8 +90,8 @@ export default function UnitPage() {
               <span className="material-symbols-outlined text-sm">home</span> Catalog
             </button>
             <span className="text-slate-300 dark:text-slate-700">/</span>
-            {unit?.moduleId ? (
-              <button onClick={() => router.push(`/module/${unit.moduleId}`)} className="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition-colors">
+            {unitCourseId ? (
+              <button onClick={() => router.push(`/module/${unitCourseId}`)} className="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition-colors">
                 <span className="material-symbols-outlined text-sm">arrow_back</span> Module
               </button>
             ) : (

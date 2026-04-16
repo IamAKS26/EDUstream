@@ -168,11 +168,30 @@ export default function ModulePage() {
           Back to Catalog
         </Link>
 
-        {/* Loading */}
+        {/* Loading Skeleton */}
         {loading && (
-          <div className="flex items-center gap-3 text-slate-500 dark:text-slate-400 py-20 justify-center">
-            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-            <span>Loading course...</span>
+          <div className="space-y-6 animate-pulse">
+            <div className="glass-card rounded-3xl overflow-hidden shadow-sm">
+              <div className="h-48 bg-slate-200 dark:bg-white/5" />
+              <div className="p-8 space-y-4">
+                <div className="h-8 bg-slate-200 dark:bg-white/10 rounded-lg w-3/4" />
+                <div className="h-4 bg-slate-200 dark:bg-white/5 rounded w-1/4 mb-4" />
+                <div className="space-y-2">
+                  <div className="h-4 bg-slate-200 dark:bg-white/5 rounded w-full" />
+                  <div className="h-4 bg-slate-200 dark:bg-white/5 rounded w-5/6" />
+                </div>
+                <div className="pt-6 flex gap-4">
+                  <div className="h-10 bg-slate-200 dark:bg-white/5 rounded-xl w-48" />
+                  <div className="h-10 bg-slate-200 dark:bg-white/5 rounded-xl w-32" />
+                </div>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div className="h-6 bg-slate-200 dark:bg-white/5 rounded w-1/3 mb-4" />
+              {[1, 2, 3].map(i => (
+                <div key={i} className="glass-card rounded-2xl h-16 bg-slate-200 dark:bg-white/5" />
+              ))}
+            </div>
           </div>
         )}
 

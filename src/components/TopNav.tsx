@@ -13,6 +13,7 @@ const navigation = [
   { name: "Notes", href: "/notes" },
   { name: "Progress", href: "/progress" },
   { name: "Community", href: "/community" },
+  { name: "Tutorial", href: "/tutorial" },
 ];
 
 export function TopNav() {

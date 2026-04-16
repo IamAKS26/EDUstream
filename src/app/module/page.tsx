@@ -250,8 +250,32 @@ export default function ModuleCatalogPage() {
       setLoading(true);
       setError("");
       try {
-        const res = await apiClient.get("/courses");
-        setCourses(res.data || []);
+        const [res, statsRes] = await Promise.allSettled([
+          apiClient.get("/courses"),
+          apiClient.get("/stats/overview")
+        ]);
+
+        let rawCourses = [];
+        if (res.status === 'fulfilled') {
+          rawCourses = res.value.data || [];
+        } else {
+          throw new Error("Failed to load courses");
+        }
+
+        let progressMap: Record<string, number> = {};
+        if (statsRes.status === 'fulfilled') {
+          const statsCourses = statsRes.value.data?.courses || [];
+          statsCourses.forEach((c: any) => {
+            progressMap[c._id.toString()] = c.progress || 0;
+          });
+        }
+
+        const mergedCourses = rawCourses.map((c: any) => ({
+          ...c,
+          progress: progressMap[c._id.toString()] || 0
+        }));
+
+        setCourses(mergedCourses);
       } catch (err: any) {
         setError(err.response?.data?.message || "Failed to load courses.");
       } finally {
