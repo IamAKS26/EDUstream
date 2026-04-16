@@ -83,10 +83,9 @@ export function VideoViewer({ unit, moduleId, onComplete }: Props) {
         )}
       </div>
 
-      {/* Description */}
       {content.description && (
-        <div className="w-full mt-4 p-4 bg-slate-50 rounded-xl border border-black/5">
-          <p className="text-sm text-slate-500 leading-relaxed line-clamp-3">{content.description}</p>
+        <div className="w-full mt-4 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-black/5 dark:border-white/5">
+          <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3">{content.description}</p>
         </div>
       )}
 
@@ -101,7 +100,7 @@ export function VideoViewer({ unit, moduleId, onComplete }: Props) {
             onClick={() => {
               window.dispatchEvent(new CustomEvent("note-timestamp", { detail: { timeSpent } }));
             }}
-            className="flex items-center gap-1 text-xs px-3 py-1.5 rounded-md bg-slate-50 border border-black/5 text-slate-700 hover:bg-primary/20 hover:text-primary transition-colors hover:border-primary/30"
+            className="flex items-center gap-1 text-xs px-3 py-1.5 rounded-md bg-slate-50 dark:bg-slate-900/50 border border-black/5 dark:border-white/5 text-slate-700 dark:text-slate-300 hover:bg-primary/20 hover:text-primary transition-colors hover:border-primary/30 dark:hover:border-primary/30"
             title="Take note with current timestamp"
           >
             <span className="material-symbols-outlined text-[14px]">edit_note</span>

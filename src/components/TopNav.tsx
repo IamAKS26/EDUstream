@@ -96,9 +96,7 @@ export function TopNav() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-2 md:gap-3">
-          <button className="hidden sm:flex w-9 h-9 md:w-10 md:h-10 rounded-full bg-white dark:bg-[#1A1A1A] border border-black/5 dark:border-white/10 shadow-sm items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-            <span className="material-symbols-outlined text-[20px]">search</span>
-          </button>
+
           <button className="relative w-9 h-9 md:w-10 md:h-10 rounded-full bg-white dark:bg-[#1A1A1A] border border-black/5 dark:border-white/10 shadow-sm flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
             <span className="material-symbols-outlined text-[20px]">notifications</span>
             <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1A1A1A]" />

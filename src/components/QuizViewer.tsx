@@ -115,7 +115,7 @@ export function QuizViewer({ unit, moduleId, onComplete }: Props) {
       </div>
 
       {/* Footer */}
-      <div className="mt-10 flex justify-end pt-6 border-t border-black/5">
+      <div className="mt-10 flex justify-end pt-6 border-t border-black/5 dark:border-white/5">
         {!submitted ? (
           <button
             onClick={handleSubmit}

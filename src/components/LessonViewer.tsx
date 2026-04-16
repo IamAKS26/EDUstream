@@ -51,17 +51,17 @@ export function LessonViewer({ unit, moduleId, onComplete }: Props) {
             <ReactMarkdown 
               remarkPlugins={[remarkGfm]}
               components={{
-                h1: ({node, ...props}) => <h1 className="text-3xl font-display font-bold text-slate-900 mb-6 mt-8" {...props} />,
-                h2: ({node, ...props}) => <h2 className="text-2xl font-display font-bold text-slate-900 mb-4 mt-8 pb-2 border-b border-black/5" {...props} />,
+                h1: ({node, ...props}) => <h1 className="text-3xl font-display font-bold text-slate-900 dark:text-white mb-6 mt-8" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-2xl font-display font-bold text-slate-900 dark:text-white mb-4 mt-8 pb-2 border-b border-black/5 dark:border-white/5" {...props} />,
                 h3: ({node, ...props}) => <h3 className="text-xl font-bold text-primary dark:text-primary/90 mb-3 mt-6" {...props} />,
                 h4: ({node, ...props}) => <h4 className="text-lg font-bold text-slate-700 dark:text-slate-200 mb-2 mt-4" {...props} />,
-                p: ({node, ...props}) => <p className="mb-5 leading-relaxed text-slate-700" {...props} />,
-                ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-5 space-y-2 text-slate-700 marker:text-primary" {...props} />,
-                ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-5 space-y-2 text-slate-700 marker:text-primary font-mono marker:font-bold" {...props} />,
+                p: ({node, ...props}) => <p className="mb-5 leading-relaxed text-slate-700 dark:text-slate-300" {...props} />,
+                ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-5 space-y-2 text-slate-700 dark:text-slate-300 marker:text-primary" {...props} />,
+                ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-5 space-y-2 text-slate-700 dark:text-slate-300 marker:text-primary font-mono marker:font-bold" {...props} />,
                 li: ({node, ...props}) => <li className="pl-1" {...props} />,
                 a: ({node, ...props}) => <a className="text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent transition-all" target="_blank" rel="noopener noreferrer" {...props} />,
-                strong: ({node, ...props}) => <strong className="font-bold text-slate-900" {...props} />,
-                em: ({node, ...props}) => <em className="italic text-slate-500" {...props} />,
+                strong: ({node, ...props}) => <strong className="font-bold text-slate-900 dark:text-white" {...props} />,
+                em: ({node, ...props}) => <em className="italic text-slate-500 dark:text-slate-400" {...props} />,
                 blockquote: ({node, ...props}) => (
                   <blockquote className="border-l-4 border-primary bg-primary/5 py-3 px-6 rounded-r-xl text-slate-500 italic mb-6 shadow-inner my-6" {...props} />
                 ),

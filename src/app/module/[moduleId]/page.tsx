@@ -29,6 +29,12 @@ interface Course {
   lessonsCount?: number;
   isAIGenerated?: boolean;
   isPublished?: boolean;
+  isFree?: boolean;
+  instructor?: string;
+  instructorEmail?: string;
+  createdByEmail?: string;
+  progress?: number;
+  completedModules?: number;
 }
 
 const typeIcon: Record<string, string> = {
@@ -57,6 +63,7 @@ export default function ModulePage() {
   const [publishing, setPublishing] = useState(false);
   const [publishMsg, setPublishMsg] = useState("");
   const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set());
+  const [completedUnits, setCompletedUnits] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -85,6 +92,15 @@ export default function ModulePage() {
         );
 
         setModules(modulesWithUnits);
+        
+        // 4. Fetch the user's completed units for this course
+        try {
+           const progressRes = await apiClient.get(`/stats/progress/${courseId}`);
+           setCompletedUnits(new Set(progressRes.data));
+        } catch (e) {
+           // Ignore if failed (e.g. not logged in)
+        }
+
         // Expand the first module by default
         if (modulesWithUnits.length > 0) {
           setExpandedModules(new Set([modulesWithUnits[0]._id]));
@@ -179,7 +195,10 @@ export default function ModulePage() {
               <div className="h-48 bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center relative">
                 <span className="material-symbols-outlined text-7xl text-primary/25">school</span>
                 <div className="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent" />
-                <div className="absolute bottom-4 left-6 flex gap-2">
+                <div className="absolute bottom-4 left-6 flex gap-2 flex-wrap">
+                  {course.isFree && (
+                    <span className="px-2 py-0.5 bg-green-500/90 rounded-full text-[10px] font-bold text-white uppercase">Free</span>
+                  )}
                   {course.isAIGenerated && (
                     <span className="px-2 py-0.5 bg-primary/90 rounded text-[10px] font-bold text-background-dark uppercase">AI Generated</span>
                   )}
@@ -195,9 +214,39 @@ export default function ModulePage() {
               <div className="p-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{course.title}</h1>
                 {course.category && <p className="text-xs text-primary uppercase tracking-wider font-bold mb-3">{course.category}</p>}
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mb-6">
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mb-4">
                   {course.description || "This course is generated dynamically by the AI Engine to adapt to your learning pace and prior knowledge."}
                 </p>
+
+                {/* Instructor / email */}
+                {(course.instructor || course.instructorEmail || course.createdByEmail) && (
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-1.5">
+                    <span className="material-symbols-outlined text-base">person</span>
+                    {course.instructor && <span className="font-semibold text-slate-700 dark:text-slate-200">{course.instructor}</span>}
+                    {(course.instructorEmail || course.createdByEmail) && (
+                      <span className="text-slate-400 dark:text-slate-500">· {course.instructorEmail || course.createdByEmail}</span>
+                    )}
+                  </p>
+                )}
+
+                {/* Progress bar */}
+                {course.progress !== undefined && (
+                  <div className="mb-6">
+                    <div className="flex justify-between text-xs font-semibold mb-1.5">
+                      <span className="text-slate-500 dark:text-slate-400">
+                        Progress
+                        {course.completedModules != null && <span className="ml-1 text-slate-400">({course.completedModules}/{modules.length} modules)</span>}
+                      </span>
+                      <span className="text-slate-900 dark:text-white">{course.progress}%</span>
+                    </div>
+                    <div className="w-full bg-slate-100 dark:bg-white/10 rounded-full h-2 overflow-hidden">
+                      <div
+                        className="bg-primary h-full rounded-full transition-all duration-700"
+                        style={{ width: `${course.progress}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
 
                 {/* Meta row */}
                 <div className="flex flex-wrap gap-4 text-sm text-slate-500 dark:text-slate-400 mb-8">
@@ -311,9 +360,15 @@ export default function ModulePage() {
                               {unit.duration && unit.duration !== "00:00" && (
                                 <span className="text-xs text-slate-500 flex-shrink-0">{unit.duration}</span>
                               )}
-                              <span className="material-symbols-outlined text-slate-400 dark:text-slate-600 group-hover:text-primary transition-colors text-sm opacity-0 group-hover:opacity-100">
-                                arrow_forward_ios
-                              </span>
+                              {completedUnits.has(unit._id) ? (
+                                <span className="material-symbols-outlined text-green-500 text-base flex-shrink-0" title="Completed">
+                                  check_circle
+                                </span>
+                              ) : (
+                                <span className="material-symbols-outlined text-slate-400 dark:text-slate-600 group-hover:text-primary transition-colors text-sm opacity-0 group-hover:opacity-100 flex-shrink-0">
+                                  arrow_forward_ios
+                                </span>
+                              )}
                             </Link>
                           ))
                         )}

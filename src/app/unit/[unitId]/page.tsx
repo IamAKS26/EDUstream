@@ -82,9 +82,21 @@ export default function UnitPage() {
     <DashboardLayout>
       <div className="p-8 max-w-5xl mx-auto min-h-[calc(100vh-64px)] flex flex-col">
         <div className="flex items-center justify-between mb-8">
-          <button onClick={() => router.back()} className="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition-colors">
-            <span className="material-symbols-outlined text-sm">arrow_back</span> Back to Module
-          </button>
+          <div className="flex items-center gap-4">
+            <button onClick={() => router.push('/module')} className="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition-colors">
+              <span className="material-symbols-outlined text-sm">home</span> Catalog
+            </button>
+            <span className="text-slate-300 dark:text-slate-700">/</span>
+            {unit?.moduleId ? (
+              <button onClick={() => router.push(`/module/${unit.moduleId}`)} className="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition-colors">
+                <span className="material-symbols-outlined text-sm">arrow_back</span> Module
+              </button>
+            ) : (
+              <button onClick={() => router.back()} className="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition-colors">
+                <span className="material-symbols-outlined text-sm">arrow_back</span> Back
+              </button>
+            )}
+          </div>
           <div className="flex gap-2 items-center text-xs font-bold text-slate-600 dark:text-slate-300 px-3 py-1 bg-slate-100 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-full uppercase tracking-widest">
             <span className="material-symbols-outlined text-xs">book</span> Static View
           </div>

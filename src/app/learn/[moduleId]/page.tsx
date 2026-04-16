@@ -19,16 +19,16 @@ export default function LearnPage() {
   const [error, setError] = useState("");
   const [moduleTopic, setModuleTopic] = useState<string>("");
 
-  // Fetch the real module title once on mount
+  // Fetch the real course title once on mount since the param is actually a courseId
   useEffect(() => {
-    apiClient.get(`/modules/single/${moduleId}`)
+    apiClient.get(`/courses/${moduleId}`)
       .then(res => setModuleTopic(res.data.title))
       .catch((err) => {
-        // If it's a network error, or a 404 (module deleted), report it instead of proceeding
+        // If it's a network error, or a 404 (course deleted), report it instead of proceeding
         if (!err.response) {
           setError("Network error: Backend is restarting or unreachable. Please refresh.");
         } else if (err.response.status === 404) {
-          setError("Module not found. It may have been deleted.");
+          setError("Course not found. It may have been deleted.");
         } else {
           setModuleTopic(moduleId); // fallback for other non-fatal errors
         }

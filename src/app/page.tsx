@@ -107,28 +107,52 @@ export default function LandingPage() {
 
   const features = [
     {
-      title: "AI Tutor",
-      description: "Get personalized guidance, explanations, and instant feedback directly in your study sessions.",
+      title: "AI Adaptive Learning",
+      description: "The AI engine serves the optimal next unit — lesson, quiz, video, or task — based on your pace.",
       icon: <BrainCircuit className="w-6 h-6" />,
       color: "from-blue-500 to-indigo-500"
+    },
+    {
+      title: "Live Coding Workspace",
+      description: "Solve coding tasks directly in the browser with real-time execution powered by Piston API.",
+      icon: <Menu className="w-6 h-6" />, // using Menu as a placeholder for code
+      color: "from-emerald-400 to-teal-500"
+    },
+    {
+      title: "AI Code Review",
+      description: "Submit code for instant feedback from a simulated senior developer reviewer powered by Groq.",
+      icon: <FileCheck2 className="w-6 h-6" />,
+      color: "from-amber-400 to-orange-500"
     },
     {
       title: "Smart Notes",
       description: "Capture key insights and let our AI automatically structure and highlight important concepts.",
       icon: <BookOpenCheck className="w-6 h-6" />,
-      color: "from-emerald-400 to-teal-500"
+      color: "from-rose-400 to-red-500"
     },
     {
-      title: "Progress Tracking",
-      description: "Visualize your learning journey with detailed analytics and skill mastery dashboards.",
+      title: "Streak & XP System",
+      description: "Stay motivated with daily streaks, XP points, badges, and certificate milestones.",
       icon: <LineChart className="w-6 h-6" />,
-      color: "from-amber-400 to-orange-500"
+      color: "from-purple-400 to-fuchsia-500"
     },
     {
-      title: "AI Generated Quizzes",
+      title: "Community Feed",
+      description: "Share knowledge, ask questions, and rate posts in the peer learning community.",
+      icon: <Sun className="w-6 h-6" />, // using Sun as a placeholder for community brightness
+      color: "from-sky-400 to-cyan-500"
+    },
+    {
+      title: "AI Tutor",
+      description: "Get personalized guidance, explanations, and instant feedback directly in your study sessions.",
+      icon: <BrainCircuit className="w-6 h-6" />,
+      color: "from-blue-400 to-indigo-500"
+    },
+    {
+      title: "Dynamic Quizzes",
       description: "Test your knowledge dynamically with context-aware quizzes tailored to your weak points.",
       icon: <FileCheck2 className="w-6 h-6" />,
-      color: "from-rose-400 to-red-500"
+      color: "from-red-400 to-rose-500"
     }
   ];
 
@@ -461,7 +485,7 @@ export default function LandingPage() {
           <div className="flex gap-4 text-slate-400">
             <a href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors"><Twitter className="w-5 h-5" /></a>
             <a href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
+            <a href="https://www.linkedin.com/in/aditya-shinde-7809772b5" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 dark:hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
           </div>
         </div>
         <div className="mt-8 text-center text-xs text-slate-500">

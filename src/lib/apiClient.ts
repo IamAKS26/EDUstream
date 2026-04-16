@@ -20,6 +20,9 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+// Guard against multiple simultaneous 401s triggering multiple redirects
+let isRedirectingToLogin = false;
+
 apiClient.interceptors.response.use(
   (response) => {
     // Handle empty AI responses depending on data structure expectations
@@ -32,12 +35,13 @@ apiClient.interceptors.response.use(
     if (!error.response) {
       console.error('Network error. Is the backend running?');
     } else if (error.response.status === 401) {
-      console.error('Invalid token or unauthorized access.');
-      if (typeof window !== 'undefined') {
+      if (typeof window !== 'undefined' && !isRedirectingToLogin) {
+        isRedirectingToLogin = true;
+        // Clear stale / expired credentials
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        // Optionally redirect to login, but this shouldn't break the app structure directly here
-        // without a router context. We'll handle routing downstream.
+        // Hard-redirect so the AuthContext re-hydrates cleanly from empty storage
+        window.location.href = '/login';
       }
     }
     return Promise.reject(error);
